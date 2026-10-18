@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="National Legal Network for Homeless Organizing and People&#39;s Empowerment (NLN HOPE): lawyers, law students and organizers standing with homeless unions.">
+<title>NLN HOPE</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: picket-sign typography on newsprint — a wide ink-black masthead, full-width colored bands, running text held to one measure, docket data in mono. */
+:root{
+  --paper:#f4f3ee;      /* cool newsprint */
+  --paper-2:#e9e7df;    /* secondary surface */
+  --ink:#15171a;        /* near-black with blue bias */
+  --ink-2:#4a4f57;      /* muted text */
+  --rule:#c9c6bb;       /* hairlines */
+  --red:#a8231c;        /* union red */
+  --red-ink:#ffffff;    /* text on red */
+  --band:#1b1e23;       /* dark band background */
+  --band-fg:#f4f3ee;
+  --band-muted:#b7bac2;
+  --display:'Anton','Impact','Arial Narrow',sans-serif;
+  --body:'Spectral',Georgia,'Times New Roman',serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#15171a;--paper-2:#1f2227;--ink:#eeece4;--ink-2:#a9adb5;--rule:#363a41;
+    --red:#d9463c;--red-ink:#15171a;--band:#0c0d0f;--band-fg:#eeece4;--band-muted:#8f939b;color-scheme:dark}
+}
+:root[data-theme="dark"]{
+  --paper:#15171a;--paper-2:#1f2227;--ink:#eeece4;--ink-2:#a9adb5;--rule:#363a41;
+  --red:#d9463c;--red-ink:#15171a;--band:#0c0d0f;--band-fg:#eeece4;--band-muted:#8f939b;color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--band)}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:.01em;line-height:.95;text-wrap:balance;margin:0;text-transform:uppercase}
+h2{font-size:clamp(2.2rem,5vw,3.4rem)}
+h3{font-size:1.35rem;letter-spacing:.03em}
+p{margin:0}
+.wrap{max-width:1120px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+.band .eyebrow{color:var(--red)}
+.measure{max-width:62ch}
+.lede{font-size:1.2rem;line-height:1.5}
+.btn{display:inline-block;font-family:var(--display);text-transform:uppercase;letter-spacing:.06em;font-size:1.05rem;padding:.7rem 1.2rem;text-decoration:none;border:2px solid currentColor;line-height:1}
+.btn:focus-visible,a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.btn.solid{background:var(--red);color:var(--red-ink);border-color:var(--red)}
+section{padding-block:4.5rem}
+.band{background:var(--band);color:var(--band-fg)}
+.band .muted{color:var(--band-muted)}
+.muted{color:var(--ink-2)}
+hr.rule{border:0;border-top:1px solid var(--rule);margin:0}
+
+/* masthead */
+.mast{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--band);color:var(--band-fg);border-bottom:3px solid var(--red)}
+.mast .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.75rem;flex-wrap:wrap}
+.mark{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+.mark b{font-family:var(--display);font-size:1.5rem;font-weight:400;letter-spacing:.04em;line-height:1}
+.mark span{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--band-muted)}
+.fist{width:30px;height:30px;flex:none}
+nav{display:flex;gap:1.1rem;flex-wrap:wrap;font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
+nav a{text-decoration:none;color:var(--band-muted)}
+nav a:hover{color:var(--band-fg)}
+
+/* hero */
+.hero{padding-block:4rem 3.5rem;border-bottom:1px solid var(--rule)}
+.hero h1{font-size:clamp(3rem,9vw,7.2rem)}
+.hero h1 em{font-style:normal;color:var(--red)}
+.hero .grid{display:grid;grid-template-columns:1.4fr 1fr;gap:3rem;align-items:end}
+.hero .right{display:grid;gap:1.3rem}
+.cta{display:flex;gap:.8rem;flex-wrap:wrap}
+.fullname{font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);border-top:1px solid var(--rule);padding-top:.8rem;margin-top:1.4rem}
+
+/* stats ticker */
+.ticker{background:var(--red);color:var(--red-ink)}
+.ticker .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;padding-block:1.2rem}
+.ticker div{min-width:0}
+.ticker b{display:block;font-family:var(--display);font-size:2rem;line-height:1;font-weight:400}
+.ticker small{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;display:block;margin-top:.3rem;opacity:.9}
+
+/* two-col */
+.two{display:grid;grid-template-columns:1fr 1.6fr;gap:3rem}
+.two>*{min-width:0}
+
+/* what we do */
+.work{display:grid;grid-template-columns:repeat(3,1fr);gap:2.4rem 2rem;margin-top:2.5rem}
+.work>div{min-width:0;border-top:3px solid var(--ink);padding-top:1rem;display:grid;gap:.6rem;align-content:start}
+.band .work>div{border-top-color:var(--red)}
+
+/* doctrine */
+.doct{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:2.5rem}
+.doct>div{background:var(--paper);padding:1.4rem;min-width:0;display:grid;gap:.5rem;align-content:start}
+.doct .cite{font-family:var(--mono);font-size:.74rem;color:var(--ink-2)}
+
+/* record */
+.record{display:grid;gap:0;margin-top:2.5rem;border-top:1px solid var(--rule)}
+.case{display:grid;grid-template-columns:220px 1fr;gap:1.5rem 2rem;padding-block:1.6rem;border-bottom:1px solid var(--rule)}
+.case>*{min-width:0}
+.case .docket{font-family:var(--mono);font-size:.76rem;line-height:1.6;color:var(--ink-2)}
+.case .docket b{display:block;color:var(--ink);font-weight:500}
+.case h3{margin-bottom:.4rem}
+.case .status{display:inline-block;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .5rem;border:1px solid var(--red);color:var(--red);margin-top:.7rem}
+.case .status.won{background:var(--red);color:var(--red-ink)}
+
+/* people */
+.people{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:2.5rem}
+.person{min-width:0;display:grid;gap:.7rem;align-content:start}
+.person .initials{font-family:var(--display);font-size:3.2rem;line-height:1;color:var(--red);border-bottom:3px solid var(--band-fg);padding-bottom:.6rem;letter-spacing:.04em}
+.person .role{font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--band-muted)}
+.person p{font-size:.98rem}
+
+/* join */
+.join{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:2.5rem}
+.join>div{min-width:0;border:2px solid var(--ink);padding:1.5rem;display:grid;gap:.8rem;align-content:start}
+.join h3{font-size:1.6rem}
+.join ul{margin:0;padding-left:1.2rem;display:grid;gap:.3rem}
+
+/* contact */
+form{display:grid;gap:1rem;max-width:560px}
+label{display:grid;gap:.35rem;font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+input,textarea,select{font:inherit;font-family:var(--body);padding:.7rem .8rem;border:1px solid var(--ink);background:var(--paper);color:var(--ink);border-radius:0;width:100%}
+textarea{min-height:140px;resize:vertical}
+button.btn{cursor:pointer;background:none;font-family:var(--display)}
+.note{font-family:var(--mono);font-size:.74rem;color:var(--ink-2);line-height:1.6}
+#sent{border:2px solid var(--red);padding:1rem;font-size:1rem}
+.contactgrid{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.contactgrid>*{min-width:0}
+.contactgrid dl{display:grid;grid-template-columns:auto 1fr;gap:.5rem 1.2rem;margin:0}
+.contactgrid dt{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);padding-top:.25rem}
+.contactgrid dd{margin:0}
+.ph{border-bottom:2px dashed var(--red);font-family:var(--mono);font-size:.9rem}
+
+footer{padding-block:2.5rem;font-family:var(--mono);font-size:.72rem;line-height:1.7;color:var(--band-muted)}
+footer .wrap{display:grid;gap:1rem}
+
+@media (max-width:860px){
+  .hero .grid,.two,.contactgrid{grid-template-columns:1fr}
+  .work,.doct,.people{grid-template-columns:1fr 1fr}
+  .case{grid-template-columns:1fr}
+  .ticker .wrap{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){
+  .work,.doct,.people,.join{grid-template-columns:1fr}
+  section{padding-block:3rem}
+  nav{gap:.8rem}
+}
+@media (prefers-reduced-motion:no-preference){
+  .hero h1{animation:rise .5s ease-out both}
+  @keyframes rise{from{transform:translateY(8px);opacity:.6}to{transform:none;opacity:1}}
+}
+</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)} img{max-width:100%} [hidden]{display:none!important}</style>
+</head>
+<body>
+
+<header class="mast">
+  <div class="wrap">
+    <a class="mark" href="#top">
+      <svg class="fist" viewBox="0 0 30 30" aria-hidden="true"><rect x="5" y="4" width="4" height="12" fill="var(--red)"/><rect x="10.5" y="2" width="4" height="14" fill="var(--red)"/><rect x="16" y="3" width="4" height="13" fill="var(--red)"/><rect x="21.5" y="6" width="4" height="10" fill="var(--red)"/><rect x="5" y="15" width="20.5" height="12" fill="var(--red)"/><rect x="2" y="11" width="4.5" height="10" fill="var(--red)"/></svg>
+      <div><b>NLN HOPE</b><br><span>National Legal Network</span></div>
+    </a>
+    <nav aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#work">What we do</a>
+      <a href="#record">The record</a>
+      <a href="#people">People</a>
+      <a href="#join">Join</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap grid">
+    <div>
+      <p class="eyebrow">Lawyers, law students and organizers standing with homeless unions</p>
+      <h1>No sweep<br>without<br><em>a fight.</em></h1>
+      <p class="fullname">National Legal Network for Homeless Organizing and People's Empowerment</p>
+    </div>
+    <div class="right">
+      <p class="lede measure">Homeless unions across the country are winning in federal court. HOPE Network exists to make sure every local that organizes has lawyers, law students, litigation support and public-records muscle behind it.</p>
+      <div class="cta">
+        <a class="btn solid" href="#join">Affiliate your union</a>
+        <a class="btn" href="#contact">Request legal support</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="wrap">
+    <div><b>2016</b><small>First local, Salinas, MLK Day</small></div>
+    <div><b>$540K</b><small>Sausalito settlement paid to residents</small></div>
+    <div><b>Citywide</b><small>Permanent injunction, Berkeley, Aug 2026</small></div>
+    <div><b>9th Cir.</b><small>Argued and pending appeals</small></div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap two">
+    <div>
+      <p class="eyebrow">Who we are</p>
+      <h2>Built by unions, for unions</h2>
+    </div>
+    <div class="measure" style="display:grid;gap:1.1rem">
+      <p class="lede">A homeless union is an unincorporated association of homeless, formerly homeless and marginally housed people who organize collectively for housing, for protection of their constitutional and statutory rights, and for immediate improvement of the conditions they live in.</p>
+      <p>The California Homeless Union was born in Salinas on Martin Luther King Day, 2016. Locals followed in Sacramento, Santa Cruz, Marin County, Sausalito, Novato, Berkeley, Santa Rosa and beyond, and the model has spread nationally through the National Union of the Homeless. These unions do not wait for a nonprofit to speak for them. They elect officers, file their own lawsuits, negotiate their own settlements and decide for themselves how settlement money is spent.</p>
+      <p>What they have lacked is scale on the legal side. One general counsel and a rotating cast of volunteers have carried cases from temporary restraining orders through the Ninth Circuit. HOPE Network is the answer to that bottleneck: a national network of attorneys, law students, paralegals, investigators and records-request specialists who take direction from the unions and put the union's members at the center of every case.</p>
+      <p>We organize under one principle: the people living in the encampment are the client, the strategist and the witness. Our job is to make sure that when a city posts a notice, the union already has a motion drafted.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="work">
+  <div class="wrap">
+    <p class="eyebrow">What we do</p>
+    <h2>Litigation support, from the TRO to the Ninth Circuit</h2>
+    <div class="work">
+      <div>
+        <h3>Emergency injunctions</h3>
+        <p class="muted">When a city posts abatement notices, hours matter. We maintain ready-to-file TRO packages, declaration templates and evidence protocols so a local can be in federal court before the sweep begins.</p>
+      </div>
+      <div>
+        <h3>Appellate defense</h3>
+        <p class="muted">Cities appeal every injunction they lose. We staff the answering briefs, excerpts of record and amicus coordination that keep hard-won protections from being reversed on appeal.</p>
+      </div>
+      <div>
+        <h3>Pro se member support</h3>
+        <p class="muted">Union members have every right to file their own claims. We train and support members filing small claims and civil rights actions over destroyed property, unlawful seizures and retaliation.</p>
+      </div>
+      <div>
+        <h3>Public records enforcement</h3>
+        <p class="muted">Sweeps run on paperwork. We file and litigate California Public Records Act requests, and their equivalents in other states, for sweep schedules, police body-camera footage, contracts and internal communications.</p>
+      </div>
+      <div>
+        <h3>Disability accommodations</h3>
+        <p class="muted">Most people in an encampment have a disability. We help members document and demand individualized accommodations under the ADA, and enforce court-ordered accommodation processes through special masters and compliance motions.</p>
+      </div>
+      <div>
+        <h3>Press and public record</h3>
+        <p class="muted">A ruling that nobody hears about does not change a city's behavior. We work with movement journalists to document sweeps, publish filings and put the union's own voice in the record.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="doctrine">
+  <div class="wrap">
+    <p class="eyebrow">How we win</p>
+    <h2>Three theories that have held up in court</h2>
+    <p class="measure" style="margin-top:1rem">Homeless union litigation does not depend on a right to camp. Since the Supreme Court's 2024 decision in <em>Grants Pass</em>, the cases that keep winning rest on what the government does to people, not on where they sleep.</p>
+    <div class="doct">
+      <div>
+        <h3>State-created danger</h3>
+        <p>The Fourteenth Amendment forbids a government from putting people in a position more dangerous than the one it found them in. A sweep that moves people from shade into extreme heat, or from a community into isolation on a sidewalk, can be enjoined on that basis.</p>
+        <p class="cite">U.S. Const. amend. XIV · Sacramento Homeless Union v. County of Sacramento (E.D. Cal. 2022)</p>
+      </div>
+      <div>
+        <h3>Americans with Disabilities Act</h3>
+        <p>Title II requires an individualized assessment and reasonable modification before a city enforces camping, sidewalk and vehicle rules against a disabled person. A blanket sweep that skips that step is unlawful discrimination.</p>
+        <p class="cite">42 U.S.C. § 12132 · Berkeley Homeless Union v. City of Berkeley, No. 3:25-cv-01414-EMC</p>
+      </div>
+      <div>
+        <h3>State constitutional right to safety</h3>
+        <p>At least thirteen state constitutions, including California's, guarantee a right to pursue and obtain safety. Union locals have invoked it directly against cities that evict people into conditions that endanger them.</p>
+        <p class="cite">Cal. Const. art. I, § 1</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="record">
+  <div class="wrap">
+    <p class="eyebrow">The record</p>
+    <h2>Cases the unions have brought</h2>
+    <p class="measure muted" style="margin-top:1rem">A selection of homeless union litigation handled by network counsel and staff. Status as of October 2026.</p>
+    <div class="record">
+
+      <div class="case">
+        <div class="docket"><b>Berkeley Homeless Union v. City of Berkeley</b>N.D. Cal. No. 3:25-cv-01414-EMC<br>Judge Edward M. Chen<br>Filed Feb. 2025</div>
+        <div>
+          <h3>Permanent, citywide protections for every union member</h3>
+          <p class="muted">The union sued in February 2025 to stop the clearance of the Eighth and Harrison encampment and won a temporary restraining order within days. In August 2026 the court entered a permanent injunction extending protections to all BHU members citywide: 72 hours' written notice before any seizure or destruction of property, no impoundment of vehicles used as shelter absent a concrete safety finding, and an individualized disability assessment before tents can be removed under the city's shared-sidewalk rules. A Rule 53 special master now adjudicates member accommodation disputes. The city's appeals are pending in the Ninth Circuit.</p>
+          <span class="status won">Permanent injunction · Aug 2026</span>
+          <span class="status">Ninth Circuit appeals pending</span>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="docket"><b>Prado v. City of Berkeley</b>N.D. Cal. No. 3:23-cv-04537<br>Related case<br>Filed Sept. 2023</div>
+        <div>
+          <h3>Disability class certified for unhoused Berkeley residents</h3>
+          <p class="muted">Brought by union members as named plaintiffs, this related action challenges the city's treatment of disabled residents living in vehicles and encampments under the ADA, Rehabilitation Act and Fair Housing Act. The court certified a disability class in 2026. The case is set for jury trial in 2027.</p>
+          <span class="status won">Class certified · 2026</span>
+          <span class="status">Jury trial 2027</span>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="docket"><b>Sacramento Homeless Union v. City and County of Sacramento</b>E.D. Cal.<br>Ninth Circuit argued 2024</div>
+        <div>
+          <h3>Federal injunction against sweeps during extreme heat</h3>
+          <p class="muted">Representing roughly 2,700 unhoused Sacramentans, the union won a federal order barring the city from clearing encampments during extreme heat, on the theory that moving people from shade onto open asphalt is a state-created danger. The city appealed and the union defended the order before the Ninth Circuit. The local went on to litigate the closure of the self-governed Camp Resolution and to intervene when the district attorney sued the city to force more enforcement.</p>
+          <span class="status won">Heat injunction · 2022</span>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="docket"><b>Sausalito/Marin County Chapter v. City of Sausalito</b>N.D. Cal.<br>Judge Edward M. Chen<br>Filed Feb. 2021</div>
+        <div>
+          <h3>$540,000 settlement, paid directly to the residents</h3>
+          <p class="muted">After the city tried to move the Camp Cormorant encampment, the union obtained a TRO in February 2021 and the court ordered the city into negotiations. The resulting settlement paid $540,000 to encampment residents themselves, who decided how it would be spent. Counsel called it a modest legal victory but a real one for the principle that unhoused people can be trusted with their own settlement money.</p>
+          <span class="status won">Settled · 2022</span>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="docket"><b>Marin County Homeless Union v. City of Novato</b>Marin Superior Court</div>
+        <div>
+          <h3>Camp Compassion at Lee Gerner Park</h3>
+          <p class="muted">The Novato local, organized around the Camp Compassion encampment at Lee Gerner Park, negotiated a settlement agreement with the city establishing a temporary encampment program with coordinated services, and returned to court to enforce it.</p>
+          <span class="status won">Settlement agreement</span>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="docket"><b>San Luis Obispo Homeless Union v. County of San Luis Obispo and CAPSLO</b>Filed 2025</div>
+        <div>
+          <h3>Civil rights suit over a "safe parking" program</h3>
+          <p class="muted">Union members placed in a county-funded safe parking program were ordered out after being accused of failing to pursue housing, in some cases toward programs that did not exist. The union's intervention forced the county to extend its deadline and retract public statements about union counsel; the suit followed.</p>
+          <span class="status">Active</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="people">
+  <div class="wrap">
+    <p class="eyebrow">People</p>
+    <h2>Staff</h2>
+    <div class="people" style="--band-fg:var(--ink);--band-muted:var(--ink-2)">
+      <div class="person">
+        <div class="initials">AP</div>
+        <h3>Anthony Prince</h3>
+        <p class="role">General Counsel</p>
+        <p>Lead Organizer and General Counsel for the National Union of the Homeless and the California Homeless Union/Statewide Organizing Council. Under his leadership the union has won unprecedented relief in state and federal court and the Ninth Circuit, relying on the state-created danger doctrine, the ADA and the right to safety in state constitutions. Before housing justice he spent decades inside the labor movement as a shop steward, grievance officer, organizer, business agent and counsel for the Steelworkers, Teamsters, SEIU and National Treasury Employees Union. Law Offices of Anthony D. Prince, Berkeley.</p>
+      </div>
+      <div class="person">
+        <div class="initials">RP</div>
+        <h3>Robbie Powelson</h3>
+        <p class="role">Director of Litigation Support</p>
+        <p>Advocate with the Santa Rosa Homeless Union and a law student completing California's Law Office Study Program through an apprenticeship at California Rural Legal Assistance. He works on the Berkeley Homeless Union district-court case and its Ninth Circuit appeals, including the excerpts of record and answering briefs, supervises law student research teams, and litigates California Public Records Act cases pro se. He writes on housing, poverty and the legal machinery that produces both. Based in the North Bay.</p>
+      </div>
+      <div class="person">
+        <div class="initials">YP</div>
+        <h3>Yesica Prado</h3>
+        <p class="role">Director of Organizing &amp; Public Records</p>
+        <p>Co-founder and President of the Berkeley Homeless Union and the lead named plaintiff in <em>Prado v. City of Berkeley</em>. A journalist and photographer with a master's from the UC Berkeley Graduate School of Journalism, she has reported on vehicular residents and encampment sweeps as a staff reporter at the San Francisco Public Press, a CatchLight Local Fellow and an Ida B. Wells Fellow. She was arrested while reporting on an Oakland sweep in 2024; the district attorney declined to prosecute. She co-founded the Public Records Enforcement Project.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="join">
+  <div class="wrap">
+    <p class="eyebrow">Join the network</p>
+    <h2>Four ways in</h2>
+    <div class="join" style="--ink:var(--band-fg)">
+      <div>
+        <h3>Homeless unions</h3>
+        <p class="muted">Affiliate your local. Affiliates get emergency filing support, template pleadings, records-request help and a direct line to counsel when a notice goes up.</p>
+        <ul class="muted"><li>Existing locals in any state</li><li>Groups forming a union now</li><li>Encampment councils and mutual aid groups</li></ul>
+      </div>
+      <div>
+        <h3>Attorneys</h3>
+        <p class="muted">Join as cooperating counsel. We match lawyers to locals by jurisdiction and need: TRO practice, appellate work, disability law, public records, damages actions.</p>
+        <ul class="muted"><li>Pro bono and low bono</li><li>Co-counsel on fee-shifting civil rights cases</li><li>Amicus drafting</li></ul>
+      </div>
+      <div>
+        <h3>Law students and paralegals</h3>
+        <p class="muted">Work on live cases with real deadlines. Students have built record excerpts, drafted research memos and staffed encampment observation teams on every major union case.</p>
+        <ul class="muted"><li>Semester and summer placements</li><li>Clinic and externship partnerships</li><li>Law Office Study Program apprentices</li></ul>
+      </div>
+      <div>
+        <h3>Supporters</h3>
+        <p class="muted">Litigation against a city is expensive even when the lawyers are free. Filing fees, transcripts, expert declarations and travel to hearings come out of the movement's pocket.</p>
+        <ul class="muted"><li>One-time and monthly giving</li><li>Foundation and law firm partnerships</li><li>In-kind: printing, vehicles, storage</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap contactgrid">
+    <div>
+      <p class="eyebrow">Contact</p>
+      <h2>Facing a sweep? Tell us.</h2>
+      <p class="measure" style="margin-top:1rem">If your encampment has been posted, or your union needs counsel, use the form or reach us directly. Include the city, the date on the notice and whether anyone at the site has a disability.</p>
+      <dl style="margin-top:2rem">
+        <dt>Email</dt><dd><span class="ph">info@hopelegalnetwork.org</span></dd>
+        <dt>General counsel</dt><dd>Law Offices of Anthony D. Prince, Berkeley, California</dd>
+        <dt>North Bay</dt><dd>926 Grant Avenue, Novato, CA 94945</dd>
+      </dl>
+      <p class="note" style="margin-top:1.5rem">Dashed items are placeholders until the domain is registered.</p>
+    </div>
+    <div>
+      <form id="intake" novalidate>
+        <label for="f-name">Your name<input id="f-name" name="name" type="text" autocomplete="name"></label>
+        <label for="f-org">Union or group<input id="f-org" name="org" type="text"></label>
+        <label for="f-city">City and state<input id="f-city" name="city" type="text"></label>
+        <label for="f-type">What do you need?
+          <select id="f-type" name="type">
+            <option>Emergency: sweep posted or underway</option>
+            <option>Affiliate a homeless union</option>
+            <option>Volunteer as an attorney</option>
+            <option>Volunteer as a law student or paralegal</option>
+            <option>Public records request help</option>
+            <option>Press inquiry</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label for="f-msg">Details<textarea id="f-msg" name="message"></textarea></label>
+        <button class="btn solid" type="submit">Send</button>
+        <p class="note">This form is a draft. It records your message on this page only; connect it to an inbox before launch.</p>
+      </form>
+      <div id="sent" hidden>Message drafted. Copy it into an email until the form is connected.</div>
+    </div>
+  </div>
+</section>
+
+<footer class="band">
+  <div class="wrap">
+    <p>National Legal Network for Homeless Organizing and People's Empowerment ("HOPE Network"). A California nonprofit organization in formation; 501(c)(3) determination pending.</p>
+    <p>Nothing on this site is legal advice or creates an attorney-client relationship. Case descriptions are summaries of public court records and press accounts as of October 2026. Robbie Powelson is a law student, not a licensed attorney, and works under attorney supervision.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var f=document.getElementById('intake'),s=document.getElementById('sent');
+  if(!f)return;
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=f.name.value.trim(),msg=f.message.value.trim();
+    if(!name||!msg){s.hidden=false;s.textContent='Add your name and some details so we can follow up.';return;}
+    s.hidden=false;
+    s.textContent='Drafted for '+name+' ('+f.type.value+'). Copy it into an email until the form is connected.';
+    try{localStorage.setItem('hope-intake-draft',JSON.stringify({name:name,org:f.org.value,city:f.city.value,type:f.type.value,message:msg}));}catch(err){}
+  });
+  try{var d=JSON.parse(localStorage.getItem('hope-intake-draft')||'null');if(d){f.name.value=d.name||'';f.org.value=d.org||'';f.city.value=d.city||'';f.message.value=d.message||'';}}catch(err){}
+})();
+</script>
+</body>
+</html>
