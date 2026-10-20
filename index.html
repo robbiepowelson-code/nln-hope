@@ -151,6 +151,27 @@ footer .wrap{display:grid;gap:1rem}
   .hero h1{animation:rise .5s ease-out both}
   @keyframes rise{from{transform:translateY(8px);opacity:.6}to{transform:none;opacity:1}}
 }
+
+/* news carousel */
+.news{position:relative;margin-top:2.5rem}
+.track{display:flex;gap:1.25rem;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding-bottom:.75rem;scrollbar-width:thin;scrollbar-color:var(--red) transparent;-webkit-overflow-scrolling:touch}
+.track::-webkit-scrollbar{height:6px}
+.track::-webkit-scrollbar-thumb{background:var(--red)}
+.story{flex:0 0 min(420px,85%);min-width:0;scroll-snap-align:start;background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;text-decoration:none;border:1px solid var(--rule)}
+.story:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.story img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;max-width:100%}
+.story .body{padding:1.1rem 1.2rem 1.3rem;display:grid;gap:.55rem;align-content:start}
+.story .meta{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);display:flex;justify-content:space-between;gap:.75rem;flex-wrap:wrap}
+.story .meta b{color:var(--red);font-weight:500}
+.story h3{font-family:var(--body);font-weight:600;font-size:1.22rem;line-height:1.3;text-transform:none;letter-spacing:0}
+.story p{font-size:.95rem;color:var(--ink-2)}
+.story .credit{font-family:var(--mono);font-size:.66rem;color:var(--ink-2);margin-top:auto;padding-top:.4rem}
+.story .read{font-family:var(--display);text-transform:uppercase;letter-spacing:.06em;font-size:.95rem;color:var(--red);margin-top:.3rem}
+.story:hover .read{text-decoration:underline}
+.newsnav{display:flex;gap:.5rem;justify-content:flex-end;margin-top:.75rem}
+.newsnav button{font:inherit;font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;background:none;color:var(--band-fg);border:1px solid var(--band-muted);padding:.5rem .9rem;cursor:pointer}
+.newsnav button:hover{border-color:var(--band-fg)}
+@media (max-width:560px){.story{flex-basis:88%}}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)} img{max-width:100%} [hidden]{display:none!important}</style>
 </head>
@@ -166,6 +187,7 @@ footer .wrap{display:grid;gap:1rem}
       <a href="#about">About</a>
       <a href="#work">What we do</a>
       <a href="#record">The record</a>
+      <a href="#news">News</a>
       <a href="#people">People</a>
       <a href="#join">Join</a>
       <a href="#contact">Contact</a>
@@ -330,6 +352,72 @@ footer .wrap{display:grid;gap:1rem}
   </div>
 </section>
 
+<section class="band" id="news">
+  <div class="wrap">
+    <p class="eyebrow">In the news</p>
+    <h2>Coverage of the cases</h2>
+    <p class="measure muted" style="margin-top:1rem">Reporting on the homeless union litigation our staff have brought. Scroll sideways or use the arrows; each card opens the article at the outlet that published it.</p>
+    <div class="news">
+      <div class="track" id="newstrack" tabindex="0" aria-label="News articles">
+      <a class="story" href="https://www.kalw.org/bay-area-news/2026-08-25/berkeley-homeless-union-wins-permanent-protections-for-its-members" target="_blank" rel="noopener">
+        <img src="img/berkeley.jpg" alt="" loading="lazy">
+        <div class="body">
+          <div class="meta"><b>KALW</b><span>Aug. 25, 2026</span></div>
+          <h3>Berkeley Homeless Union wins permanent protections for its members</h3>
+          <p>A federal judge permanently extended protections for union members living in encampments. "The City of Berkeley is prevented from clearing encampments unless they comply with detailed instructions from the court," said Anthony Prince.</p>
+          <p class="credit">Berkeley Homeless Union v. City of Berkeley · Photo: Alastair Boone / KALW News</p>
+          <span class="read">Read the story &rarr;</span>
+        </div>
+      </a>
+      <a class="story" href="https://calmatters.org/housing/homelessness/2025/03/vallejo-injunction/" target="_blank" rel="noopener">
+        <img src="img/vallejo.jpg" alt="" loading="lazy">
+        <div class="body">
+          <div class="meta"><b>CalMatters</b><span>Mar. 5, 2025</span></div>
+          <h3>First-of-its kind court order halts sweep of California homeless camp</h3>
+          <p>A federal judge blocked Vallejo from tearing down the shelter of Evelyn Alfred, a 64-year-old disabled woman, in a ruling that showed unhoused residents still have legal ways to push back after Grants Pass. The Ninth Circuit later upheld the order.</p>
+          <p class="credit">Alfred v. City of Vallejo · Photo: Manuel Orbegozo for CalMatters (San Francisco sweep, 2024)</p>
+          <span class="read">Read the story &rarr;</span>
+        </div>
+      </a>
+      <a class="story" href="https://pacificsun.com/federal-judge-limits-san-rafael-homeless-camping-ordinance/" target="_blank" rel="noopener">
+        <img src="img/sanrafael.jpg" alt="" loading="lazy">
+        <div class="body">
+          <div class="meta"><b>Pacific Sun</b><span>Oct. 31, 2023</span></div>
+          <h3>Federal judge limits San Rafael's homeless camping ordinance</h3>
+          <p>Camp Integrity residents won a preliminary injunction that substantially weakened the city's restrictive camping ordinance and required San Rafael to take on new obligations before enforcing it.</p>
+          <p class="credit">Boyd v. City of San Rafael · Photo: Nikki Silverstein / Pacific Sun</p>
+          <span class="read">Read the story &rarr;</span>
+        </div>
+      </a>
+      <a class="story" href="https://pacificsun.com/?p=470429" target="_blank" rel="noopener">
+        <img src="img/sausalito.jpg" alt="" loading="lazy">
+        <div class="body">
+          <div class="meta"><b>Pacific Sun</b><span>Aug. 5, 2022</span></div>
+          <h3>Sausalito agrees to pay $540,000 to homeless encampment residents</h3>
+          <p>After more than 18 months of litigation, the city settled with the Sausalito Homeless Union: $540,000, with 30 encampment residents each receiving $18,000 for housing-related expenses.</p>
+          <p class="credit">Sausalito/Marin County Chapter v. City of Sausalito · Photo: Pacific Sun</p>
+          <span class="read">Read the story &rarr;</span>
+        </div>
+      </a>
+      <a class="story" href="https://pacificsun.com/?p=470213" target="_blank" rel="noopener">
+        <img src="img/novato.jpg" alt="" loading="lazy">
+        <div class="body">
+          <div class="meta"><b>Pacific Sun</b><span>Aug. 3, 2022</span></div>
+          <h3>Novato and the Novato Homeless Union reach a settlement agreement</h3>
+          <p>The settlement ended nearly a year of federal litigation, let the Camp Compassion encampment in Lee Gerner Park stay for at least two more years, and struck restrictive language from the city’s camping ordinance.</p>
+          <p class="credit">Marin County Homeless Union v. City of Novato · Photo: Jason Sarris / Pacific Sun</p>
+          <span class="read">Read the story &rarr;</span>
+        </div>
+      </a>
+      </div>
+      <div class="newsnav">
+        <button type="button" id="newsprev" aria-label="Previous article">&larr; Prev</button>
+        <button type="button" id="newsnext" aria-label="Next article">Next &rarr;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="people">
   <div class="wrap">
     <p class="eyebrow">People</p>
@@ -432,6 +520,14 @@ footer .wrap{display:grid;gap:1rem}
 </footer>
 
 <script>
+(function(){
+  var t=document.getElementById('newstrack');if(!t)return;
+  function step(){var c=t.querySelector('.story');return c?c.getBoundingClientRect().width+20:400;}
+  document.getElementById('newsprev').addEventListener('click',function(){t.scrollBy({left:-step(),behavior:'smooth'});});
+  document.getElementById('newsnext').addEventListener('click',function(){t.scrollBy({left:step(),behavior:'smooth'});});
+  t.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){t.scrollBy({left:step(),behavior:'smooth'});e.preventDefault();}if(e.key==='ArrowLeft'){t.scrollBy({left:-step(),behavior:'smooth'});e.preventDefault();}});
+})();
+
 (function(){
   var f=document.getElementById('intake'),s=document.getElementById('sent');
   if(!f)return;
